@@ -3,7 +3,7 @@ const app = require('../src/app');
 
 describe('/numbers', () => {
   describe('GET /add/{number}/and/{number}', () => {
-    xit('adds 2 and 1', done => {
+    it('adds 2 and 1', done => {
       request(app)
         .get('/numbers/add/2/and/1')
         .then(res => {
@@ -13,7 +13,19 @@ describe('/numbers', () => {
         });
     });
 
-    xit('adds 12 and 0', done => {
+    it('adds fish and chips', done => {
+      request(app)
+      .get('/numbers/add/fish/and/chips')
+      .then(res => {
+        expect(res.status).toEqual(400)
+        expect(res.body).toEqual({ error: 'Parameters must be valid numbers.'});
+        done();
+      });
+    });
+  });
+   
+
+    it('adds 12 and 0', done => {
       request(app)
         .get('/numbers/add/12/and/0')
         .then(res => {
@@ -23,7 +35,7 @@ describe('/numbers', () => {
         });
     });
 
-    xit('adds 10 and -5', done => {
+    it('adds 10 and -5', done => {
       request(app)
         .get('/numbers/add/10/and/-5')
         .then(res => {
@@ -32,8 +44,8 @@ describe('/numbers', () => {
           done();
         });
     });
-
-    xit('errors if the parameters are not numbers', done => {
+   
+    it('errors if the parameters are not numbers', done => {
       request(app)
         .get('/numbers/add/fish/and/chips')
         .then(res => {
@@ -45,7 +57,7 @@ describe('/numbers', () => {
   });
 
   describe('GET /subtract/{number}/from/{number}', () => {
-    xit('subtracts 2 from 1', done => {
+    it('subtracts 2 from 1', done => {
       request(app)
         .get('/numbers/subtract/2/from/1')
         .then(res => {
@@ -257,4 +269,3 @@ describe('/numbers', () => {
         });
     });
   });
-});
